@@ -1,8 +1,9 @@
 // ignore_for_file: avoid_print
 
-import 'dart:ui';
+import 'dart:ui' as ui;
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:rive/math.dart' show Mat2D;
 import 'package:rive/rive.dart';
 // ignore: implementation_imports
@@ -158,12 +159,12 @@ class RiveCustomRenderObject extends RiveRenderObject {
     ShapeComponents shapeComponent,
   ) {
     for (final fill in shapeComponent.fill) {
-      fill.paint.color = component.color.withValues(alpha: fill.paint.color.a);
+      fill.paint.color = component.color.withValues( fill.paint.color);
     }
 
     for (final stroke in shapeComponent.stroke) {
       stroke.paint.color =
-          component.color.withValues(alpha: stroke.paint.color.a);
+          component.color.withValues( stroke.paint.color);
     }
   }
 
@@ -308,7 +309,7 @@ class RiveCustomRenderObject extends RiveRenderObject {
     // Attempt to redraw with default settings
     try {
       // Create a new PictureRecorder and Canvas
-      final recorder = PictureRecorder();
+      final recorder = ui.PictureRecorder();
       final canvas = Canvas(recorder);
 
       // Draw the artboard on the canvas
@@ -324,5 +325,16 @@ class RiveCustomRenderObject extends RiveRenderObject {
       // This will trigger a rebuild on the next frame
       markNeedsLayout();
     }
+  }
+}
+
+extension ColorExtensions on Color {
+  Color withValues(Color color) {
+    return Color.fromRGBO(
+      color.red,
+      color.green,
+      color.blue,
+      color.opacity
+    );
   }
 }

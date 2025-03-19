@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, overridden_fields
-import 'dart:ui';
-
+import 'package:flutter/material.dart' as material;
 import 'package:rive_color_modifier/src/rive_component.dart';
 
 /// Represents a color component of a Rive animation.
@@ -42,7 +41,7 @@ class RiveColorComponent implements RiveComponent {
   /// The color to be applied to the matched component.
   ///
   /// This color will replace the original color of the matched fill or stroke.
-  final Color color;
+  final material.Color color;
 
   /// A list of shape components that match the specified patterns.
   ///

@@ -171,3 +171,13 @@ class WaveClipper extends CustomClipper<Path> {
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
+extension ColorExtensions on Color {
+  Color withValues({required double  alpha}) {
+    return Color.fromRGBO(
+      this.red,
+      this.green,
+      this.blue,
+      alpha,
+    );
+  }
+}
